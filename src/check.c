@@ -82,8 +82,6 @@ void	read_map(char *path,  t_data **vars)
 {
 	int	fd;
 	int	i = 0;
-	//int	j;
-	//char *line;
 
 	(*vars)->file_map = NULL;
 	(*vars)->file_map = malloc(sizeof(t_data) * (*vars)->win_draw.y);

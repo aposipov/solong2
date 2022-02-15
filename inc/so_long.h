@@ -14,40 +14,35 @@
 # define SO_LONG_H
 
 # include "../minilibx/mlx.h"
-//# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <unistd.h>
 
-typedef struct	s_size {
+typedef struct s_size {
 	int	x;
 	int	y;
 }	t_size;
 
-typedef struct	s_chr{
-	int P;
-	int E;
-	int C;
+typedef struct s_chr {
+	int	player;
+	int	exit;
+	int	collect;
 }	t_chr;
 
 typedef struct s_data {
 	char	**file_map;
 	void	*mlx;
 	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		collect;
 	t_chr	chr;
+	t_size	pos_player;
 	t_size	win_draw;
 }	t_data;
 
 void	check_chr(char *path);
 void	check_size_map(char *path, t_data **vars);
-void	read_map(char *path,  t_data **vars);
+void	read_map(char *path, t_data **vars);
 void	map(char **file_map, t_data **vars);
-int		movements(int keycode, t_data **vars);
+int		player_moves(int keycode, t_data **vars);
 
 #endif

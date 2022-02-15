@@ -54,17 +54,17 @@ int	main(int argc, char **argv)
 		ft_extension(argv[1]);
 		check_chr(argv[1]);
 		check_size_map(argv[1], &vars);
-		printf("x2 = %d \n", vars->win_draw.x);
-		printf("y2 = %d \n", vars->win_draw.y);
-
 		read_map(argv[1], &vars);
+		// check wall 1?
+		// check P E C
 
 		vars->mlx = mlx_init();
 		vars->win = mlx_new_window(vars->mlx, vars->win_draw.x * 50,
 								   vars->win_draw.y * 50,"so_long");
 		mlx_hook(vars->win, 17, 0, ft_close, 0);
 		map(vars->file_map, &vars);
-		mlx_key_hook(vars->win, movements, &vars);
+		mlx_key_hook(vars->win, player_moves, &vars);
+
 		mlx_loop(vars->mlx);
 	}
 	else

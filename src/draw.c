@@ -19,40 +19,35 @@ void	draw(char *path, t_data vars)
 	int		y;
 
 	x = 0;
-	y = 20;
+	y = 0;
 	chr = mlx_xpm_file_to_image(vars.mlx, path, &x, &y);
 	mlx_put_image_to_window(vars.mlx,vars.win, chr, vars
 			.win_draw.x, vars.win_draw.y);
 }
 
-void	draw_block(char block, t_data **vars, int i, int j)
+void	draw_box(char box, t_data **vars, int i, int j)
 {
-	(void) i;
-	(void) j;
-	if (block == '1')
+	if (box == '1')
 		draw("./xpm/wall_50_50.xpm", **vars);
-	else if (block == '0')
+	else if (box == '0')
 		draw("./xpm/ground.xpm", **vars);
-	else if (block == 'C')
+	else if (box == 'C')
 	{
-		draw("./xpm/ground.xpm", **vars);
+		//draw("./xpm/ground.xpm", **vars);
 		draw("./xpm/key_50_50.xpm", **vars);
-		(*vars)->collect += 1;
+		(*vars)->chr.collect += 1;
 	}
-	else if (block == 'E')
+	else if (box == 'E')
+		draw("./xpm/close_50.xpm", **vars);
+	else if (box == 'e')
+		draw("./xpm/open_50.xpm", **vars);
+	else if (box == 'P')
 	{
-		draw("./xpm/coins.xpm", **vars);
+		(*vars)->pos_player.x = j;
+		(*vars)->pos_player.y = i;
+		//player_dir(*vars); // animation 4 position
+		draw("./xpm/pl_50.xpm", **vars);
 	}
-//	else if (block == 'e')
-//		draw("./xpm/exit2.xpm", *game);
-//	else if (block == 'A')
-//		draw("./xpm/m-o.xpm", *game);
-//	else if (block == 'P')
-//	{
-//		game->pos_player.x = j;
-//		game->pos_player.y = i;
-//		player_dir(*game);
-//	}
 }
 
 void	map(char **file_map, t_data **vars)
@@ -61,16 +56,15 @@ void	map(char **file_map, t_data **vars)
 	int	j;
 
 	i = 0;
-	j = 0;
 	(*vars)->win_draw.y = 0;
-	(*vars)->collect = 0;
+	(*vars)->chr.collect = 0;
 	while (file_map[i])
 	{
 		(*vars)->win_draw.x = 0;
 		j = 0;
 		while (file_map[i][j])
 		{
-			draw_block(file_map[i][j], vars, i, j);
+			draw_box(file_map[i][j], vars, i, j);
 			j++;
 			(*vars)->win_draw.x += 50;
 		}
