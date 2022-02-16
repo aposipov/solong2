@@ -55,8 +55,7 @@ int	main(int argc, char **argv)
 		check_size_map(argv[1], &vars);
 		read_map(argv[1], &vars);
 		search_chr(&vars);
-		// check wall 1?
-		// check P E C
+		valid_wall(&vars);
 		vars->mlx = mlx_init();
 		vars->win = mlx_new_window(vars->mlx, vars->win_draw.x * 50, \
 		vars->win_draw.y * 50, "so_long");

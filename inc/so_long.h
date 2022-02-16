@@ -46,5 +46,9 @@ void	read_map(char *path, t_data **vars);
 void	map(char **file_map, t_data **vars);
 int		player_moves(int keycode, t_data **vars);
 void	search_chr(t_data **vars);
+void	valid_wall(t_data **vars);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
+void	ft_putstr(char *str);
 
 #endif

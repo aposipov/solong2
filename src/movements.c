@@ -34,14 +34,16 @@ void	movements(int keycode, t_data **vars)
 		(*vars)->pos_player.x += 1;
 		(*vars)->score += 1;
 	}
-	printf("\n score = %d", (*vars)->score);
+	ft_putstr("moves: ");
+	ft_putnbr((*vars)->score);
+	ft_putstr("\n");
 }
 
 void	finish_game(t_data **vars)
 {
 	if ((*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] == 'e')
 	{
-		write(1, "you won !\n", 10);
+		ft_putstr("you won !\n");
 		exit(0);
 	}
 }

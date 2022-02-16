@@ -31,7 +31,7 @@ void	check_chr(char *path)
 			break ;
 		while (line[i] && line[i] != '\n')
 		{
-			if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i]
+			if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] \
 			!= 'E' && line[i] != 'C')
 			{
 				write(1, "check character! \n", 17);
@@ -99,5 +99,7 @@ void	read_map(char *path, t_data **vars)
 		(*vars)->file_map[i] = malloc(sizeof(t_data) * (*vars)->win_draw.x);
 		(*vars)->file_map[i] = get_next_line(fd);
 	}
+	(*vars)->chr.player = 0;
+	(*vars)->chr.exit = 0;
+	(*vars)->chr.collect = 0;
 }
-

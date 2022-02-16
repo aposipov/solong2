@@ -20,7 +20,7 @@ HEADER = ./inc/so_long.h ./inc/get_next_line.h
 
 SRC = ./src/so_long.c ./src/check.c \
 	./src/get_next_line.c ./src/get_next_line_utils.c\
-	./src/draw.c ./src/movements.c ./src/search.c
+	./src/draw.c ./src/movements.c ./src/search.c ./src/utils.c
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
@@ -42,8 +42,9 @@ clean:
 
 fclean:	clean
 		$(RM) so_long
-		@echo all files is clean
+		@echo all files is clean!
 
 re:	fclean all
 
 .PHONY: all clean fclean re
+
