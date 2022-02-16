@@ -20,7 +20,7 @@ HEADER = ./inc/so_long.h ./inc/get_next_line.h
 
 SRC = ./src/so_long.c ./src/check.c \
 	./src/get_next_line.c ./src/get_next_line_utils.c\
-	./src/draw.c ./src/movements.c
+	./src/draw.c ./src/movements.c ./src/search.c
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 

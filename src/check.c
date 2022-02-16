@@ -15,30 +15,31 @@
 
 void	check_chr(char *path)
 {
-	int fd;
-	int i;
-	char	*line = NULL;
+	int		fd;
+	int		i;
+	char	*line;
 
+	line = NULL;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit(0);
-	while(fd > 0)
+		exit (0);
+	while (fd > 0)
 	{
 		i = 0;
 		line = get_next_line(fd);
 		if (!line)
-			break;
-		while(line[i] && line[i] != '\n')
+			break ;
+		while (line[i] && line[i] != '\n')
 		{
 			if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i]
-																	  != 'E' &&
-				line[i] != 'C')
+			!= 'E' && line[i] != 'C')
 			{
-			write(1, "check character! \n", 17);
-			exit(0);
+				write(1, "check character! \n", 17);
+				exit (0);
 			}
 			i++;
 		}
+		free(line);
 	}
 }
 
@@ -46,8 +47,8 @@ void	check_size_map(char *path, t_data **vars)
 {
 	int		fd;
 	char	*line;
-	int 	j;
-	int 	length;
+	int		j;
+	int		length;
 
 	*vars = malloc(sizeof(t_data));
 	line = NULL;
@@ -56,10 +57,10 @@ void	check_size_map(char *path, t_data **vars)
 		exit(0);
 	j = 0;
 	line = get_next_line(fd);
+	free(line);
 	(*vars)->win_draw.x = ft_strlen(line) - 1;
-	while(line)
+	while (line)
 	{
-
 		if (line != NULL)
 		{
 			if (line[ft_strlen(line) - 1] == '\n')
@@ -72,17 +73,19 @@ void	check_size_map(char *path, t_data **vars)
 				exit(0);
 			}
 			line = get_next_line(fd);
+			free(line);
 		}
 		j++;
 	}
 	(*vars)->win_draw.y = j;
 }
 
-void	read_map(char *path,  t_data **vars)
+void	read_map(char *path, t_data **vars)
 {
 	int	fd;
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	(*vars)->file_map = NULL;
 	(*vars)->file_map = malloc(sizeof(t_data) * (*vars)->win_draw.y);
 	fd = open(path, O_RDONLY);
@@ -90,12 +93,11 @@ void	read_map(char *path,  t_data **vars)
 		exit(0);
 	(*vars)->file_map[i] = malloc(sizeof(t_data) * (*vars)->win_draw.x);
 	(*vars)->file_map[i] = get_next_line(fd);
-	printf("%s", (*vars)->file_map[i]);
-	while((*vars)->file_map[i])
+	while ((*vars)->file_map[i])
 	{
 		i++;
 		(*vars)->file_map[i] = malloc(sizeof(t_data) * (*vars)->win_draw.x);
 		(*vars)->file_map[i] = get_next_line(fd);
-		printf("%s", (*vars)->file_map[i]);
 	}
 }
+

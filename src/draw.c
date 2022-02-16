@@ -12,6 +12,8 @@
 
 #include "../inc/so_long.h"
 
+//void valid_chr(t_data );
+
 void	draw(char *path, t_data vars)
 {
 	void	*chr;
@@ -33,7 +35,6 @@ void	draw_box(char box, t_data **vars, int i, int j)
 		draw("./xpm/ground.xpm", **vars);
 	else if (box == 'C')
 	{
-		//draw("./xpm/ground.xpm", **vars);
 		draw("./xpm/key_50_50.xpm", **vars);
 		(*vars)->chr.collect += 1;
 	}
@@ -45,7 +46,6 @@ void	draw_box(char box, t_data **vars, int i, int j)
 	{
 		(*vars)->pos_player.x = j;
 		(*vars)->pos_player.y = i;
-		//player_dir(*vars); // animation 4 position
 		draw("./xpm/pl_50.xpm", **vars);
 	}
 }

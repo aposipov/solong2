@@ -37,6 +37,7 @@ typedef struct s_data {
 	t_chr	chr;
 	t_size	pos_player;
 	t_size	win_draw;
+	int		score;
 }	t_data;
 
 void	check_chr(char *path);
@@ -44,5 +45,6 @@ void	check_size_map(char *path, t_data **vars);
 void	read_map(char *path, t_data **vars);
 void	map(char **file_map, t_data **vars);
 int		player_moves(int keycode, t_data **vars);
+void	search_chr(t_data **vars);
 
 #endif
