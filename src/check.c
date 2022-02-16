@@ -102,4 +102,5 @@ void	read_map(char *path, t_data **vars)
 	(*vars)->chr.player = 0;
 	(*vars)->chr.exit = 0;
 	(*vars)->chr.collect = 0;
+	search_chr(vars);
 }
