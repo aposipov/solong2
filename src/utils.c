@@ -33,3 +33,16 @@ void	ft_putstr(char *str)
 	while (*str)
 		write(1, str++, 1);
 }
+
+int	fd_open(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		write(1, "fd no valid !\n", 14);
+		exit (0);
+	}
+	return (fd);
+}

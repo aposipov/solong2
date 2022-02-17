@@ -37,6 +37,7 @@ void	movements(int keycode, t_data **vars)
 	ft_putstr("moves: ");
 	ft_putnbr((*vars)->score);
 	ft_putstr("\n");
+	printf("moves2: %d\n", (*vars)->score);
 }
 
 void	finish_game(t_data **vars)
@@ -44,6 +45,11 @@ void	finish_game(t_data **vars)
 	if ((*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] == 'e')
 	{
 		ft_putstr("you won !\n");
+		exit(0);
+	}
+	if ((*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] == 'A')
+	{
+		ft_putstr("game is over!\n");
 		exit(0);
 	}
 }

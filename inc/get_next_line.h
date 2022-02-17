@@ -25,4 +25,6 @@ size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *str1, char *str2);
 char	*ft_strrchr(const char *s, int c);
 
+char	*ft_strjoin2(char *str1, char *str2);
+
 #endif

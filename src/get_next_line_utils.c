@@ -64,3 +64,30 @@ char	*ft_strrchr(const char *s, int c)
 			return ((char *)s);
 	return (NULL);
 }
+
+char	*ft_strjoin2(char *str1, char *str2)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!str1 || !str2)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	if (!str)
+		return (NULL);
+	while (str1[i])
+	{
+		str[i] = str1[i];
+		i++;
+	}
+	while (str2[j])
+	{
+		str[i + j] = str2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
+}

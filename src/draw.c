@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+#include "../inc/get_next_line.h"
 
 void	draw(char *path, t_data **vars)
 {
@@ -33,28 +34,33 @@ void	draw_box(char box, t_data **vars, int i, int j)
 		draw("./xpm/ground.xpm", vars);
 	else if (box == 'C')
 	{
-		draw("./xpm/key_50_50.xpm", vars);
+		draw("./xpm/c_50_50.xpm", vars);
 		(*vars)->chr.collect += 1;
 	}
 	else if (box == 'E')
 	{
-		draw("./xpm/close_50.xpm", vars);
+		draw("./xpm/close_50_50.xpm", vars);
 	}
 	else if (box == 'e')
-		draw("./xpm/open_50.xpm", vars);
+		draw("./xpm/open_50_50.xpm", vars);
 	else if (box == 'P')
 	{
 		(*vars)->pos_player.x = j;
 		(*vars)->pos_player.y = i;
-		draw("./xpm/pl_50.xpm", vars);
+		draw("./xpm/p_50_50.xpm", vars);
 	}
+	else if (box == 'A')
+		draw("./xpm/a_50_50.xpm", vars);
 }
 
 void	map(char **file_map, t_data **vars)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*str;
+	char	*score;
 
+	str = NULL;
 	i = 0;
 	(*vars)->win_draw.y = 0;
 	(*vars)->chr.collect = 0;
@@ -71,4 +77,20 @@ void	map(char **file_map, t_data **vars)
 		(*vars)->win_draw.y += 50;
 		i++;
 	}
+	score = ft_itoa((*vars)->score);
+	str = ft_strjoin2("moves: ", score);
+	free(score);
+	mlx_string_put((*vars)->mlx, (*vars)->win, 10, 10, 1, str);
+	free(str);
+	//free(print_score(vars));
 }
+
+//char *print_score(t_data **vars)
+//{
+//	char *score;
+//	char *str;
+//
+//	str = NULL;
+//	score = ft_itoa((*vars)->score);
+//	str = ft_strjoin("moves: ", score);
+//	free(score);

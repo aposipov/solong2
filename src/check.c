@@ -13,52 +13,10 @@
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
 
-void	check_chr(char *path)
+void	check_size_map2(char *line, int j, int fd, t_data **vars)
 {
-	int		fd;
-	int		i;
-	char	*line;
+	int	length;
 
-	line = NULL;
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		exit (0);
-	while (fd > 0)
-	{
-		i = 0;
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		while (line[i] && line[i] != '\n')
-		{
-			if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] \
-			!= 'E' && line[i] != 'C')
-			{
-				write(1, "check character! \n", 17);
-				exit (0);
-			}
-			i++;
-		}
-		free(line);
-	}
-}
-
-void	check_size_map(char *path, t_data **vars)
-{
-	int		fd;
-	char	*line;
-	int		j;
-	int		length;
-
-	*vars = malloc(sizeof(t_data));
-	line = NULL;
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		exit(0);
-	j = 0;
-	line = get_next_line(fd);
-	free(line);
-	(*vars)->win_draw.x = ft_strlen(line) - 1;
 	while (line)
 	{
 		if (line != NULL)
@@ -80,6 +38,50 @@ void	check_size_map(char *path, t_data **vars)
 	(*vars)->win_draw.y = j;
 }
 
+void	check_chr(char *path)
+{
+	int		fd;
+	int		i;
+	char	*line;
+
+	line = NULL;
+	fd = fd_open(path);
+	while (fd > 0)
+	{
+		i = 0;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		while (line[i] && line[i] != '\n')
+		{
+			if (line[i] != '1' && line[i] != '0' && line[i] != 'P' && line[i] \
+			!= 'E' && line[i] != 'C' && line[i] != 'A')
+			{
+				write(1, "check character! \n", 17);
+				exit (0);
+			}
+			i++;
+		}
+		free(line);
+	}
+}
+
+void	check_size_map(char *path, t_data **vars)
+{
+	int		fd;
+	char	*line;
+	int		j;
+
+	*vars = malloc(sizeof(t_data));
+	line = NULL;
+	fd = fd_open(path);
+	j = 0;
+	line = get_next_line(fd);
+	(*vars)->win_draw.x = ft_strlen(line) - 1;
+	check_size_map2(line, j, fd, vars);
+	free(line);
+}
+
 void	read_map(char *path, t_data **vars)
 {
 	int	fd;
@@ -91,16 +93,13 @@ void	read_map(char *path, t_data **vars)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		exit(0);
-	(*vars)->file_map[i] = malloc(sizeof(t_data) * (*vars)->win_draw.x);
 	(*vars)->file_map[i] = get_next_line(fd);
 	while ((*vars)->file_map[i])
 	{
 		i++;
-		(*vars)->file_map[i] = malloc(sizeof(t_data) * (*vars)->win_draw.x);
 		(*vars)->file_map[i] = get_next_line(fd);
 	}
 	(*vars)->chr.player = 0;
 	(*vars)->chr.exit = 0;
-	(*vars)->chr.collect = 0;
 	search_chr(vars);
 }
