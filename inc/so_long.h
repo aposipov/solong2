@@ -54,7 +54,6 @@ void	valid_wallv(t_data **vars);
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
 void	ft_putstr(char *str);
-char	*print_score(t_data **vars);
 char	*ft_itoa(int n);
 
 #endif

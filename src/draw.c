@@ -53,14 +53,11 @@ void	draw_box(char box, t_data **vars, int i, int j)
 		draw("./xpm/a_50_50.xpm", vars);
 }
 
-void	map(char **file_map, t_data **vars)
+void	map2(char	**file_map, t_data	**vars)
 {
 	int		i;
 	int		j;
-	char	*str;
-	char	*score;
 
-	str = NULL;
 	i = 0;
 	(*vars)->win_draw.y = 0;
 	(*vars)->chr.collect = 0;
@@ -77,20 +74,18 @@ void	map(char **file_map, t_data **vars)
 		(*vars)->win_draw.y += 50;
 		i++;
 	}
+}
+
+void	map(char **file_map, t_data **vars)
+{
+	char	*str;
+	char	*score;
+
+	str = NULL;
+	map2(file_map, vars);
 	score = ft_itoa((*vars)->score);
 	str = ft_strjoin2("moves: ", score);
 	free(score);
 	mlx_string_put((*vars)->mlx, (*vars)->win, 10, 10, 1, str);
 	free(str);
-	//free(print_score(vars));
 }
-
-//char *print_score(t_data **vars)
-//{
-//	char *score;
-//	char *str;
-//
-//	str = NULL;
-//	score = ft_itoa((*vars)->score);
-//	str = ft_strjoin("moves: ", score);
-//	free(score);

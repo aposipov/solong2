@@ -15,29 +15,13 @@
 void	movements(int keycode, t_data **vars)
 {
 	if (keycode == 13 || keycode == 126)
-	{
 		(*vars)->pos_player.y -= 1;
-		(*vars)->score += 1;
-	}
 	if (keycode == 1 || keycode == 125)
-	{
 		(*vars)->pos_player.y += 1;
-		(*vars)->score += 1;
-	}
 	if (keycode == 0 || keycode == 123)
-	{
 		(*vars)->pos_player.x -= 1;
-		(*vars)->score += 1;
-	}
 	if (keycode == 2 || keycode == 124)
-	{
 		(*vars)->pos_player.x += 1;
-		(*vars)->score += 1;
-	}
-	ft_putstr("moves: ");
-	ft_putnbr((*vars)->score);
-	ft_putstr("\n");
-	printf("moves2: %d\n", (*vars)->score);
 }
 
 void	finish_game(t_data **vars)
@@ -84,10 +68,13 @@ int	player_moves(int keycode, t_data **vars)
 		exit(0);
 	movements(keycode, vars);
 	if ((*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] !=
-	'1' &&
-			(*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] !=
-			'E')
+		'1' &&
+		(*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] !=
+		'E')
+	{
 		redraw(vars);
+		(*vars)->score += 1;
+	}
 	map((*vars)->file_map, vars);
 	return (0);
 }
