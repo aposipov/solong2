@@ -42,7 +42,7 @@ clean:
 
 fclean:	clean
 		$(RM) so_long
-		@echo all files is clean!
+		@echo $(GREEN)all files is clean!$(NC)
 
 re:	fclean all
 

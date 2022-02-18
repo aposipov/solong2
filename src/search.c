@@ -38,10 +38,14 @@ void	search_chr(t_data **vars)
 
 void	check_pec(t_data **vars)
 {
-	if ((*vars)->chr.player <= 0 || (*vars)->chr.exit <= 0 || \
-	(*vars)->chr.collect <= 0)
+	if ((*vars)->chr.exit <= 0 || (*vars)->chr.collect <= 0)
 	{
 		write(1, "\ncheck you chr\n", 15);
+		exit(0);
+	}
+	if ((*vars)->chr.player != 1)
+	{
+		write(1, "\ncheck you start position\n", 27);
 		exit(0);
 	}
 	write(1, "\n", 1);

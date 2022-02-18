@@ -22,6 +22,9 @@ void	movements(int keycode, t_data **vars)
 		(*vars)->pos_player.x -= 1;
 	if (keycode == 2 || keycode == 124)
 		(*vars)->pos_player.x += 1;
+	write(1, "moves: ", 8);
+	ft_putnbr((*vars)->score);
+	write(1, "\n", 1);
 }
 
 void	finish_game(t_data **vars)
@@ -50,7 +53,9 @@ void	redraw(t_data **vars)
 		while ((*vars)->file_map[i][j])
 		{
 			if ((*vars)->file_map[i][j] == 'P')
+			{
 				(*vars)->file_map[i][j] = '0';
+			}
 			if (i == (*vars)->pos_player.y && j == (*vars)->pos_player.x)
 				(*vars)->file_map[i][j] = 'P';
 			if ((*vars)->chr.collect == 0 && (*vars)->file_map[i][j] == 'E')
